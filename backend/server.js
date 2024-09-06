@@ -1,0 +1,18 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const taskRoutes = require('./routes/tasks')
+require('dotenv').config();
+const PORT = process.env.PORT || 5000;
+
+app.use(bodyParser.json());
+
+app.use(taskRoutes);
+
+app.get('/test' , (req, res)=>{
+  res.json({test : "testing"})
+})
+
+app.listen(() => {
+    console.log(`Server is running on : ${PORT}`);
+});
