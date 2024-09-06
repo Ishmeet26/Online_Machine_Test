@@ -1,17 +1,13 @@
 const fs = require('fs');
+const tasksFilePath = './tasks.json'; 
 
-const tasksFilePath = './tasks.json';
-
-const readTasks = () => {
-  const tasksData = fs.readFile(tasksFilePath);
-  return JSON.parse(tasksData);
-};
-
-const writeTasks = (tasks) => {
-  fs.writeFile(tasksFilePath, JSON.stringify(tasks, null, 2));
-};
-
-module.exports = {
-  readTasks,
-  writeTasks
+function readTasks() {
+    const tasksData = fs.readFileSync(tasksFilePath);
+    return JSON.parse(tasksData);
 }
+
+function writeTasks(tasks) {
+    fs.writeFileSync(tasksFilePath, JSON.stringify(tasks, null, 2));
+}
+
+module.exports = { readTasks, writeTasks };
